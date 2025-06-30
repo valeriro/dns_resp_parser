@@ -118,45 +118,12 @@ How to build and run:
 
 Covered Test Cases:
 --------------------------------------------------------
-test_read_dns_name_basic()              Tests standard label-based domain like www.google.com
-test_read_dns_name_with_pointer()       Tests DNS name using pointer compression (0xC0 offset)
-test_read_dns_name_nested_pointer()     Tests nested pointers pointing to compressed names
-test_read_dns_name_truncated_output()   Ensures output buffer overflow is safely handled
-test_read_dns_name_invalid_pointer()    Ensures out-of-bound pointers are correctly rejected
-test_dns_packet_simple_a_record()       Tests a complete DNS packet with an A record
-test_dns_packet_aaaa_record()           Tests a DNS packet with an AAAA record (IPv6 address)
-test_dns_packet_multiple_answers()      Tests DNS packet with multiple answers (A and AAAA)
-
-
-Output Example:
---------------------------------------------------------
-
-
-OK - Basic label test passed: www.google.com
-OK - Pointer compression test passed: www.example.com
-OK - Nested pointer test passed: www.example.com
-OK - Truncated output buffer correctly rejected.
-OK - Out-of-bounds pointer correctly rejected.
---- test_dns_packet_simple_a_record ---
-
-Domain: google.com
-Address IPv4: 142.250.75.142
----------------------------------------
-
---- test_dns_packet_aaaa_record ---
-
-Domain: google.com
-Address IPv6: 2001:4860:4860::8888
------------------------------------
-
---- test_dns_packet_multiple_answers ---
-
-Domain: google.com
-Address IPv4: 142.250.75.142
-Address IPv6: 2001:4860:4860::8888
-----------------------------------------
-
-
-All read_dns_name() unit tests passed.
-
+**test_read_dns_name_basic()**              Tests standard label-based domain like www.google.com
+**test_read_dns_name_with_pointer()**       Tests DNS name using pointer compression (0xC0 offset)
+**test_read_dns_name_nested_pointer()**     Tests nested pointers pointing to compressed names
+**test_read_dns_name_truncated_output()**   Ensures output buffer overflow is safely handled
+**test_read_dns_name_invalid_pointer()**    Ensures out-of-bound pointers are correctly rejected
+**test_dns_packet_simple_a_record()**       Tests a complete DNS packet with an A record
+**test_dns_packet_aaaa_record()**           Tests a DNS packet with an AAAA record (IPv6 address)
+**test_dns_packet_multiple_answers()**      Tests DNS packet with multiple answers (A and AAAA)
 
