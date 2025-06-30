@@ -23,7 +23,20 @@ Extracts domain names and associated A (IPv4) and AAAA (IPv6) records.
 
 Project Structure
 ========================================================================================
-<pre> ```text dns_resp_parser/ ├── src/ │ ├── dns_resp_parser.c # Core DNS response parsing implementation │ ├── dns_resp_parser.h # DNS response parser header file │ ├── main.c # Main program (socket & BPF) │ └── Makefile # Build script for parser ├── tests/ │ ├── tests_dns_resp_parser.c # Unit tests │ └── Makefile # Test build script ├── README.md # Project overview └── .git/ # Git repository metadata ``` </pre>
+
+
+- `dns_resp_parser/`
+  - `src/`
+    - `dns_resp_parser.c` – Core DNS response parsing implementation
+    - `dns_resp_parser.h` – DNS response parser header file
+    - `main.c` – Main program (socket creation and BPF filter implementation)
+    - `Makefile` – Builds the parser and example program
+  - `tests/`
+    - `tests_dns_resp_parser.c` – Unit tests for DNS response parser
+    - `Makefile` – Builds and runs tests
+- `README.md` – Project overview and instructions
+- `.git/` – Git repository files
+
 
 
 Build Instructions
