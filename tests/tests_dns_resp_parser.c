@@ -158,9 +158,9 @@ void test_dns_packet_simple_a_record()
 
 	int total_len = ptr - packet;
 
-	printf("=== test_dns_packet_simple_a_record ===\n");
+	printf("--- test_dns_packet_simple_a_record ---\n");
 	process_dns_packet(packet, total_len);
-	printf("=======================================\n\n");
+	printf("---------------------------------------\n\n");
 }
 
 
@@ -204,9 +204,9 @@ void test_dns_packet_aaaa_record()
 
     int total_len = ptr - packet;
 
-    printf("=== test_dns_packet_aaaa_record ===\n");
+    printf("--- test_dns_packet_aaaa_record ---\n");
     process_dns_packet(packet, total_len);
-    printf("===================================\n\n");
+    printf("-----------------------------------\n\n");
 }
 
 
@@ -256,9 +256,9 @@ void test_dns_packet_multiple_answers()
 
     int total_len = ptr - packet;
 
-    printf("=== test_dns_packet_multiple_answers ===\n");
+    printf("--- test_dns_packet_multiple_answers ---\n");
     process_dns_packet(packet, total_len);
-    printf("========================================\n\n");
+    printf("----------------------------------------\n\n");
 }
 
 int main() {
