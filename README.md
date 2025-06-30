@@ -1,4 +1,4 @@
-DNS Packet Sniffer & Parser
+DNS Packet Sniffer
 =======================================================================================
 A DNS response parser for raw Ethernet packet data. This tool extracts domain names and 
 resolved IP addresses (IPv4 and IPv6) from DNS responses.
@@ -24,18 +24,18 @@ Extracts domain names and associated A (IPv4) and AAAA (IPv6) records.
 Project Structure
 ========================================================================================
 dns_resp_parser/
-├── src/
-│   ├── dns_resp_parser.c        # Core DNS response parsing implementation
-│   ├── dns_resp_parser.h        # DNS Resp. Parser header file
-│   ├── main.c                   # main program (socket create and BPF filter impl,). 
-│   └── Makefile                 # Makefile to build the parser and example program
-│
-├── tests/
-│   ├── tests_dns_resp_parser.c  # Unit tests for DNS response parser
-│   └── Makefile                 # Makefile to build and run tests
-│
-├── README.md                    # Project overview and instructions
-└── .git/                        # Git repository files
+----| src/
+		|---- dns_resp_parser.c        # Core DNS response parsing implementation
+		|---- dns_resp_parser.h        # DNS Resp. Parser header file
+		|---- main.c                   # main program (socket create and BPF filter impl,). 
+		|---- Makefile                 # Makefile to build the parser and example program
+
+----| tests/
+		|---- tests_dns_resp_parser.c  # Unit tests for DNS response parser
+		|----Makefile                 # Makefile to build and run tests
+
+----README.md                    # Project overview and instructions
+----.git/                        # Git repository files
 
 
 Build Instructions
@@ -91,3 +91,64 @@ The program will listen for DNS response packets  and print parsed domain names 
 
 		Domain: www.google.com
 		Address IPv6: 2a00:1450:4028:806::2004
+		
+		
+
+
+Unit tests:
+======================================================================================
+
+How to build and run:
+--------------------------------------------------------
+	cd tests
+		
+	1. Build:
+			make
+	2. Clean:
+			make clean
+	3. Run:
+			./tests_dns_resp_parser
+			
+			
+
+Covered Test Cases:
+--------------------------------------------------------
+test_read_dns_name_basic()				Tests standard label-based domain like www.google.com
+test_read_dns_name_with_pointer()		Tests DNS name using pointer compression (0xC0 offset)
+test_read_dns_name_nested_pointer()		Tests nested pointers pointing to compressed names
+test_read_dns_name_truncated_output()	Ensures output buffer overflow is safely handled
+test_read_dns_name_invalid_pointer()	Ensures out-of-bound pointers are correctly rejected
+test_dns_packet_simple_a_record()		Tests a complete DNS packet with an A record
+test_dns_packet_aaaa_record()			Tests a DNS packet with an AAAA record (IPv6 address)
+test_dns_packet_multiple_answers()		Tests DNS packet with multiple answers (A and AAAA)
+
+
+Output Example:
+--------------------------------------------------------
+OK - Basic label test passed: www.google.com
+OK - Pointer compression test passed: www.example.com
+OK - Nested pointer test passed: www.example.com
+OK - Truncated output buffer correctly rejected.
+OK - Out-of-bounds pointer correctly rejected.
+=== test_dns_packet_simple_a_record ===
+
+Domain: google.com
+Address IPv4: 142.250.75.142
+=======================================
+
+=== test_dns_packet_aaaa_record ===
+
+Domain: google.com
+Address IPv6: 2001:4860:4860::8888
+===================================
+
+=== test_dns_packet_multiple_answers ===
+
+Domain: google.com
+Address IPv4: 142.250.75.142
+Address IPv6: 2001:4860:4860::8888
+========================================
+
+All read_dns_name() unit tests passed.
+
+
