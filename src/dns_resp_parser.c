@@ -1,5 +1,4 @@
 #include <stdio.h>
-//#include <stdlib.h>
 #include <string.h>
 #include <arpa/inet.h>
 #include <netinet/ip.h>
@@ -134,7 +133,7 @@ void process_dns_packet(uint8_t *buffer, int len)
 	// IP header is after Ethernet header (14 bytes)
 	struct iphdr *iph = (struct iphdr *)(buffer + ETHERNET_HEADER_LENGTH);
 	
-	// ne need to check it (bpf)
+	// no need to check it (bpf)
 	//if (iph->protocol != IPPROTO_UDP) 
 	//	return;
 
